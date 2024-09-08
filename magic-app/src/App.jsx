@@ -1,33 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import axios from "axios";
+const baseURL = __API_PATH__;
+import { useState } from "react";
+import Header from "./Components/Header";
+import { useEffect } from "react";
 function App() {
-  const [count, setCount] = useState(0)
 
+const [isLoading, setIsLoading] = useState(false);
+const [message, setMessage ] = useState("");
+
+  async function fetchAPI() {
+    try {
+      // Set loading state to true
+      //setIsLoading(true);
+  
+      // Send a GET request to the server
+      const response = await fetch(baseURL + '/magic');
+  
+      // Parse the JSON response
+      const data = await response.json();
+  
+      // Update the message with the response data
+      //setMessage(data.message);
+      console.log(data)
+    } catch (error) {
+      // Handle errors
+      setMessage("Error fetching data");
+      console.error(error);
+    } finally {
+      // Reset loading state
+      //setIsLoading(false);
+    }
+  }
+  useEffect(() => { 
+  fetchAPI()
+  })
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header />
+      {isLoading ?? <h2>Loading</h2>}
+      <h2>{message}</h2>
     </>
   )
 }
