@@ -1,3 +1,4 @@
+import axios from "axios";
 const baseURL = __API_PATH__;
 import { useState } from "react";
 import Header from "./Components/Header";
@@ -13,14 +14,14 @@ const [message, setMessage ] = useState("");
       //setIsLoading(true);
   
       // Send a GET request to the server
-      const response = await fetch(baseURL);
+      const response = await fetch(baseURL + '/magic');
   
       // Parse the JSON response
       const data = await response.json();
   
       // Update the message with the response data
       //setMessage(data.message);
-      console.log(data.message)
+      console.log(data)
     } catch (error) {
       // Handle errors
       setMessage("Error fetching data");
