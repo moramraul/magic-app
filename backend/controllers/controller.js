@@ -1,4 +1,4 @@
-const mtg = require('mtgsdk')
+import fetch from 'node-fetch';
 
 function pruebaRouter(req, res) {
     console.log('Prueba')
@@ -6,9 +6,10 @@ function pruebaRouter(req, res) {
 }
 
 async function sendingMagic(req, res) {
-    const result = await mtg.card.find(3);
-    console.log(result)
-    res.send(result.card)
+    const result = await fetch('https://api.scryfall.com/cards/search?order=cmc&q=c%3Ared+pow%3D3')
+    const data = await result.json();
+    console.log(data)
+    res.send(data) 
 }
 
 const control = {
@@ -16,4 +17,4 @@ const control = {
     sendingMagic: (req, res) => { sendingMagic(req, res) },
 }
 
-module.exports = control;
+export default control;

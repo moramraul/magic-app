@@ -1,12 +1,11 @@
-const router = require("express").Router()
-const controller = require('../controllers/controller');
-// const products = require("../controllers/product.controllers")
-// const user = require("../controllers/users.controllers")
-// const admin = require("../controllers/admin.controllers")
-// const actionCompras = require("../controllers/compras.controllers")
+import { Router } from 'express';
+const router = Router();
+import control from '../controllers/controller.js';
 
-router.get("/prueba", controller.pruebaRouter)
-router.get("/magic", controller.sendingMagic)
+//const controller = require('../controllers/controller');
+
+router.get("/prueba", control.pruebaRouter)
+router.get("/magic", control.sendingMagic)
 // router.post("/register", user.registro)
 // router.post("/login", user.loguear)
 // router.post("/modifyprofile", user.updateUser)
@@ -48,4 +47,4 @@ router.get("/magic", controller.sendingMagic)
 // router.post("/enviarmail",actionCompras.enviarMail); //prueba test para mail
 
 // router.post("/insertarpasscambiada", user.insertarPassCambiada);
-module.exports = router
+export default router

@@ -1,44 +1,42 @@
-import axios from "axios";
 const baseURL = __API_PATH__;
 import { useState } from "react";
 import Header from "./Components/Header";
 import { useEffect } from "react";
+import MagicCard from "./Components/MagicCard";
+import RequestForm from "./Components/RequestForm";
 function App() {
-
-const [isLoading, setIsLoading] = useState(false);
-const [message, setMessage ] = useState("");
+const [card, setCard] = useState('');
 
   async function fetchAPI() {
     try {
-      // Set loading state to true
-      //setIsLoading(true);
   
       // Send a GET request to the server
       const response = await fetch(baseURL + '/magic');
-  
+      const rjson = await response.json()
+      console.log(rjson.data)
+      setCard(rjson.data[0].image_uris.normal)
+      //const resp = await fetch('https://api.scryfall.com/cards/search?order=cmc&q=c%3Ared+pow%3D3')
       // Parse the JSON response
-      const data = await response.json();
-  
-      // Update the message with the response data
-      //setMessage(data.message);
-      console.log(data)
+      // const data = await response.json();
+      // console.log(data);
+      // setCard(data);
+      // console.log(card)
     } catch (error) {
       // Handle errors
-      setMessage("Error fetching data");
       console.error(error);
     } finally {
       // Reset loading state
       //setIsLoading(false);
     }
   }
-  useEffect(() => { 
-  fetchAPI()
-  })
+  // useEffect(() => { 
+  // fetchAPI()
+  //})
   return (
     <>
       <Header />
-      {isLoading ?? <h2>Loading</h2>}
-      <h2>{message}</h2>
+      {card ? <MagicCard img={card}/> : ''}
+      <RequestForm/>
     </>
   )
 }
