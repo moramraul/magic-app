@@ -1,25 +1,29 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit'
+
+import { configureStore } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const formSlice = createSlice({
-    name : 'sliceForm',
-    initialState : {
-        format: '',
-        colors: []
+  name: "sliceForm",
+  initialState: {
+    requestData: {
+      format: "",
+      colors: [],
     },
-    reducer : {
-        colectFormData(state, payload) {
-            state.colors = payload.colors;
-            state.format = payload.format;
-        }
-    }
+  },
+  reducers: {
+    colectFormData(state, action) {
+      console.log(action);
+      state.requestData.colors = action.payload.colors;
+      state.requestData.format = action.payload.format;
+    },
+  },
 });
 
 const store = configureStore({
-    reducer: {
-        form: formSlice.reducer
-    }
-})
+  reducer: {
+    form: formSlice.reducer,
+  },
+});
 
-export const formActions = formSlice.actions;
+export const { colectFormData } = formSlice.actions;
 export default store;
