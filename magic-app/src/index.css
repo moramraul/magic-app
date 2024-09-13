@@ -22,13 +22,9 @@ a:hover {
   color: #535bf2;
 }
 
-/* body {
+body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-} */
+}
 
 h1 {
   font-size: 3.2em;
@@ -75,6 +71,7 @@ button:focus-visible {
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  background-color: rgb(19, 19, 95);
 }
 .form-container {
   margin: 1rem;

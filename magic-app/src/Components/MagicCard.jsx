@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 MagicCard.propTypes = {
-    img: PropTypes.string.isRequired
+    card: PropTypes.object
   }
-export default function MagicCard({ img }) {
+export default function MagicCard({ card }) {
     return (
         <div className="magic-card">
-            <img src={img} />
+            <img src={card.img} />
     </div>
 )
 
