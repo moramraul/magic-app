@@ -10,7 +10,7 @@ export default function Home() {
     try {
       // Send a GET request to the server
       const response = await axios.get(baseURL + "/magic");
-      console.log(response.data);
+      console.log(response.data); 
       setCards(response.data)
     } catch (error) {
       // Handle errors
