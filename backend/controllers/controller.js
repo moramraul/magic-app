@@ -64,7 +64,14 @@ async function sendingMagic(req, res) {
 const dbRef = ref(getDatabase());
 get(child(dbRef, `magic/`)).then((snapshot) => {
   if (snapshot.exists()) {
-    res.send(snapshot.val());
+    let arrayCards = []
+    const objectCard = snapshot.val();
+    let keys = Object.keys(objectCard)
+    for (let i = 0; i < keys.length; i++) {
+      arrayCards.push(objectCard[keys[i]])
+    }
+    let fiveCards = arrayCards.slice(0, 6)
+    res.send(fiveCards);
   } else {
     console.log("No data available");
   }

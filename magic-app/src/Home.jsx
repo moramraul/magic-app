@@ -1,7 +1,8 @@
 const baseURL = __API_PATH__;
 import { useState, useEffect } from "react";
-import MagicCard from "./Components/MagicCard";
 import axios from "axios";
+import HomeMenu from "./Components/HomeMenu";
+import HomeAside from "./Components/HomeAside";
 
 export default function Home() {
   const [cards, setCards] = useState([]);
@@ -21,9 +22,9 @@ export default function Home() {
     fetchHomeCards()}, []
   );
   return (
-    <>
-    <h2>Consigue un mazo aleatorio para exportar a Magic Arena y Magic Online</h2>
-      {cards ? cards.map((el) => <MagicCard key={el.id} card={el} />) : ""}
-    </>
+    <div className="home">
+    <HomeMenu />
+    <HomeAside />
+    </div>
   );
 }
