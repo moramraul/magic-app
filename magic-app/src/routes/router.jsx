@@ -2,6 +2,7 @@ import {createBrowserRouter } from 'react-router-dom';
 import RequestForm from '../Components/RequestForm';
 import Layout from '../Layout';
 import Home from '../Home';
+import ImportList from '../Components/ImportList';
 const router = createBrowserRouter([
     {
         element: <Layout  />,
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
           {
             path: "/form",
             element: <RequestForm />
+          },
+          {
+            path: "/export",
+            element: <ImportList />
           }
         ]
       }
