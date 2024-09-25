@@ -24,13 +24,11 @@ const formSlice = createSlice({
 const deckSlice = createSlice({
   name: "sliceDeck",
   initialState: {
-    rawDeck: [],
     formatedDeck: []
   },
   reducers: {
-    setRawDeck(state, action) {
-      state.rawDeck = action.payload;
-      console.log(state.rawDeck)
+    setDeck(state, action) {
+      state.formatedDeck = action.payload
     }
   }
 })
@@ -43,5 +41,5 @@ const store = configureStore({
 });
 
 export const { colectFormData } = formSlice.actions;
-export const {setRawDeck} = deckSlice.actions;
+export const {setDeck} = deckSlice.actions;
 export default store;

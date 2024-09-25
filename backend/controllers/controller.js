@@ -20,6 +20,23 @@ function writeMagicData(card) {
   if (!rarity) rarity = '';
 }
 
+function shuffle(array) {
+  let currentIndex = array.length;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+  return array;
+}
+
 async function sendingMagic(req, res) {
 const {colors, format } = req.body;
 const colorsString = colors.join("")
@@ -33,25 +50,10 @@ const resultCreature = await fetch(`https://api.scryfall.com/cards/search?&q=typ
  const dataCreatures = await resultCreature.json();
  const allCards = [dataSorcery.data, dataInstant.data, dataCreatures.data]
  const allTogether = allCards.flat()
- res.send(allTogether);
+ const random = shuffle(allTogether)
+ const thirtySixDeck = random.slice(0, 36)
+ res.send(thirtySixDeck);
 
-  // const result = await fetch(
-  //   "https://api.scryfall.com/cards/search?order=cmc&q=c%3Ared+pow%3D3"
-  // );
-  // const data = await result.json();
-  // const cards = data.data;
-  // console.log(cards.length)
-  // for (let j = 0; j < cards.length; j++) {
-  //   console.log('itero cards')
-  //   writeMagicData(cards[j])
-  // }
-
-  // const fiveCards = [];
-  // for (let i = 0; i < data.data.length; i++) {
-  //   if (i > 4) break;
-  //   else fiveCards.push(data.data[i])
-  // }
-  // res.send(fiveCards);
 }
 
 async function magicRequest(req, res) {

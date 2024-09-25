@@ -2,7 +2,7 @@ const baseURL = __API_PATH__;
 import Select from "react-select";
 import { useDispatch } from "react-redux";
 import { colectFormData } from "../store/store";
-import { setRawDeck } from "../store/store";
+import { setDeck } from "../store/store";
 import { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -58,7 +58,7 @@ export default function RequestForm() {
         format
       });
       const payload = response.data;
-      dispatch(setRawDeck(payload))
+      dispatch(setDeck(payload))
 
     } catch (error) {
       // Handle errors
