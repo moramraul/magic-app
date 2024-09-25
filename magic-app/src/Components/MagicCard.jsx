@@ -5,8 +5,8 @@ MagicCard.propTypes = {
 export default function MagicCard({ card }) {
     return (
         <div className="magic-card">
-            {/* <img src={card.image_uris.small} /> */}
-            <p>{card.oracle_text}</p>
+            {card.image_uris && card.image_uris.border_crop ? <img src={card.image_uris.border_crop} /> : <></> }
+            {/* <p>{card.oracle_text}</p> */}
     </div>
 )
 
